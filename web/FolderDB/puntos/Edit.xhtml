@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPuntosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{puntosController.selected.codigo}" title="#{bundle.EditPuntosTitle_codigo}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_encabezado}" for="encabezado" />
+                    <h:inputText id="encabezado" value="#{puntosController.selected.encabezado}" title="#{bundle.EditPuntosTitle_encabezado}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_encabezado}"/>
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_cuerpo}" for="cuerpo" />
+                    <h:inputText id="cuerpo" value="#{puntosController.selected.cuerpo}" title="#{bundle.EditPuntosTitle_cuerpo}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_cuerpo}"/>
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{puntosController.selected.fecha}" title="#{bundle.EditPuntosTitle_fecha}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_comentarioAdmin}" for="comentarioAdmin" />
+                    <h:inputText id="comentarioAdmin" value="#{puntosController.selected.comentarioAdmin}" title="#{bundle.EditPuntosTitle_comentarioAdmin}" />
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_valorizacion}" for="valorizacion" />
+                    <h:inputText id="valorizacion" value="#{puntosController.selected.valorizacion}" title="#{bundle.EditPuntosTitle_valorizacion}" />
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_codigoCategoria}" for="codigoCategoria" />
+                    <h:selectOneMenu id="codigoCategoria" value="#{puntosController.selected.codigoCategoria}" title="#{bundle.EditPuntosTitle_codigoCategoria}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_codigoCategoria}">
+                        <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPuntosLabel_codigoPersona}" for="codigoPersona" />
+                    <h:selectOneMenu id="codigoPersona" value="#{puntosController.selected.codigoPersona}" title="#{bundle.EditPuntosTitle_codigoPersona}" required="true" requiredMessage="#{bundle.EditPuntosRequiredMessage_codigoPersona}">
+                        <f:selectItems value="#{personasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{puntosController.update}" value="#{bundle.EditPuntosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPuntosViewLink}"/>
+                <br />
+                <h:commandLink action="#{puntosController.prepareList}" value="#{bundle.EditPuntosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPuntosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
